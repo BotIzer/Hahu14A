@@ -4,7 +4,9 @@ import CardComponent from "src/components/CardComponent.vue";
 
 <template>
   <q-page class="q-pa-xl">
-    <CardComponent></CardComponent>
+    <div class="row justify-center q-ma-xl">
+      <CardComponent></CardComponent>
+    </div>
   </q-page>
 </template>
 

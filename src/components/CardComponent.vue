@@ -1,6 +1,8 @@
 <script>
 import { ref } from "vue";
-
+let displayText = ref(
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
+);
 export default {
   setup() {
     const longText = ref(
@@ -8,7 +10,7 @@ export default {
     );
     const toggled = ref(false);
     const handleToggle = (toggled) => {
-      if (toggled) {
+      if (!toggled) {
         let slicedText = "";
         let lastWhiteSpaceIdx = -1;
         for (let index = 0; index < 100; index++) {
@@ -18,20 +20,24 @@ export default {
           }
         }
         if (slicedText[99] == " ") {
-          longText.value = slicedText.slice(0, 98);
+          displayText.value = slicedText.slice(0, 98) + "...";
         } else {
-          longText.value = slicedText.slice(0, lastWhiteSpaceIdx);
+          displayText.value = slicedText.slice(0, lastWhiteSpaceIdx) + "...";
         }
       } else {
-        console.log("Is not toggled.");
+        displayText.value = longText.value;
       }
     };
 
     return {
       longText,
       toggled,
+      displayText,
       handleToggle,
     };
+  },
+  mounted() {
+    this.handleToggle();
   },
 };
 </script>
@@ -42,7 +48,7 @@ export default {
       Our Changing Planet
     </q-card-section>
     <q-card-section class="" style="background-color: rgb(200, 190, 156)">
-      <div class="text-h7 text-justify">{{ longText }}</div>
+      <div class="text-h7 text-justify">{{ displayText }}</div>
       <hr />
       <q-toggle
         v-model="toggled"

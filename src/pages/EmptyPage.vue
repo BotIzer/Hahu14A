@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import CardComponent from "src/components/CardComponent.vue";
 import { useStore } from "src/stores/store";
+import { ref } from "vue";
 import { onMounted } from "vue";
 const store = useStore();
+const selectedCategoryName = ref(store.many.documents[0].categoryNameField);
 onMounted(() => {
   store.getAllCategories();
+  store.one_GetAll();
 });
 // export default {
 //   data() {
@@ -24,13 +27,19 @@ onMounted(() => {
 // };
 </script>
 <template>
-  <p v-for="(item, index) in store.many.documents" :key="index">{{ item }}</p>
+  <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p>
   <q-page>
     <div class="row justify-center">
       <q-select
-        class="q-field--float col-xs-5 col-sm-4 col-md-3 col-lg-2 col-xl-1"
-        label="Kategóriák"
-        model-value=""
+        v-model="selectedCategoryName"
+        clearable
+        emit-value
+        label="Kategória"
+        map-options
+        option-label="categoryNameField"
+        option-value="id"
+        :options="store.many.documents"
+        :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
       ></q-select>
     </div>
     <div class="row justify-center q-ma-xl">

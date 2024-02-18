@@ -9,22 +9,6 @@ onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
 });
-// export default {
-//   data() {
-//     return {
-//       store,
-//     };
-//   },
-//   computed: {
-//     truncatedText() {
-//       if (this.longText.length > 130) {
-//         return this.longText.slice(0, 124) + "...";
-//       } else {
-//         return this.longText;
-//       }
-//     },
-//   },
-// };
 </script>
 <template>
   <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p>
@@ -43,8 +27,8 @@ onMounted(() => {
       ></q-select>
     </div>
     <div class="row justify-center q-ma-xl">
-      <div class="col-sm-12 col-md-6 col-l-4 col-xl-3">
-        <CardComponent v-for="(item, index) in store.many.documents" :key="index"></CardComponent>
+      <div v-for="(item, index) in store.many.documents" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <CardComponent></CardComponent>
       </div>
     </div>
   </q-page>

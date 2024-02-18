@@ -41,5 +41,4 @@ export default {
     </q-card-actions>
   </q-card>
 </template>
-
 <style lang="sass" scoped></style>

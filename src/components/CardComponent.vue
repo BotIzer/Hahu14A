@@ -4,7 +4,19 @@ import { ref } from "vue";
 export default {
   setup() {
     return {
-      value: ref(true),
+      longText: ref(
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
+      ),
+      toggled: ref(false),
+      handleToggle(toggled, longText) {
+        if (toggled) {
+          for (let index = 0; index < longText.length; index++) {}
+          console.log(longText);
+          console.log("Is toggled.");
+        } else {
+          console.log("Is not toggled.");
+        }
+      },
     };
   },
 };
@@ -24,11 +36,16 @@ export default {
     </q-card-section>
     <q-card-section class="" style="background-color: rgb(200, 190, 156)">
       <div class="text-h7 text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        {{ longText }}
       </div>
       <hr />
-      <q-toggle v-model="template" label="Teljes hirdetés" />
+      <q-toggle
+        v-model="toggled"
+        color="dark-blue"
+        :disable="longText.length <= 100"
+        label="Teljes hirdetés"
+        @update:model-value="handleToggle(toggled, longText)"
+      />
     </q-card-section>
     <q-card-section style="background-color: rgb(255, 228, 196)">
       <q-img role="img" src="../assets/logo.png" style="max-height: 200px"></q-img>

@@ -1,16 +1,31 @@
 <script>
-import { ref } from "vue";
-
+import { useStore } from "src/stores/store";
+import { onMounted } from "vue";
+const store = useStore();
+onMounted(() => {
+  store.getAllCategories();
+});
 export default {
-  setup() {
+  data() {
     return {
-      value: ref(true),
+      store,
     };
+  },
+  computed: {
+    truncatedText() {
+      if (this.longText.length > 130) {
+        return this.longText.slice(0, 124) + "...";
+      } else {
+        return this.longText;
+      }
+    },
   },
 };
 </script>
 <template>
   <div class="col-sm-12 col-md-6 col-l-4 col-xl-3">
+    {{ console.log(store.many.documents) }}
+    <p v-for="(item, index) in store.many.documents" :key="index">{{ item }}</p>
     <q-card bordered flat>
       <q-card-section class="text-center text-h5" style="background-color: rgb(200, 190, 156)">
         Our Changing Planet
@@ -35,5 +50,4 @@ export default {
     </q-card>
   </div>
 </template>
-
 <style lang="sass" scoped></style>

@@ -4,7 +4,7 @@ import { useStore } from "src/stores/store";
 import { ref } from "vue";
 import { onMounted } from "vue";
 const store = useStore();
-const selectedCategoryName = ref(store.many.documents[0].categoryNameField);
+const selectedCategoryName = ref(store.many.documents[0]);
 onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();

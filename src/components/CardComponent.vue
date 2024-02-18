@@ -1,5 +1,4 @@
 <script>
-import { text } from "node:stream/consumers";
 import { ref } from "vue";
 
 export default {

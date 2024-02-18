@@ -44,7 +44,7 @@ onMounted(() => {
     </div>
     <div class="row justify-center q-ma-xl">
       <div class="col-sm-12 col-md-6 col-l-4 col-xl-3">
-        <CardComponent></CardComponent>
+        <CardComponent v-for="(item, index) in store.many.documents" :key="index"></CardComponent>
       </div>
     </div>
   </q-page>

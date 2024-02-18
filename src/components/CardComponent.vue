@@ -1,4 +1,5 @@
 <script>
+import { text } from "node:stream/consumers";
 import { ref } from "vue";
 
 export default {
@@ -10,8 +11,14 @@ export default {
       toggled: ref(false),
       handleToggle(toggled, longText) {
         if (toggled) {
-          for (let index = 0; index < longText.length; index++) {}
-          console.log(longText);
+          const wordArray = longText.split(" ");
+          const letterCount = Math.sum(...wordArray.length);
+          let textResult = longText;
+          if (letterCount >= 100) {
+            wordArray.splice(-1);
+            return (textResult = wordArray.join(" "));
+          }
+          return textResult;
           console.log("Is toggled.");
         } else {
           console.log("Is not toggled.");

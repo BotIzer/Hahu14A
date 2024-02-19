@@ -13,7 +13,7 @@ onMounted(() => {
 // console.log(store.one.documents[0]);
 </script>
 <template>
-  <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p>
+  <!-- <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p> -->
   <q-page>
     <div class="row justify-center">
       <q-select

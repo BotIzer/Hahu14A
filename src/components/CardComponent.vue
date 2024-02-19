@@ -2,56 +2,52 @@
 import { useStore } from "src/stores/store";
 import { ref } from "vue";
 const store = useStore();
-let displayText = ref(
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
-);
+
 export default {
   props: ["index"],
   setup(props) {
+    const displayText = ref(store.one.documents[props.index].leiras);
     const szin = ref(store.one.documents[props.index].szin);
     const evjarat = ref(store.one.documents[props.index].evjarat);
     const hengerurtartalom = ref(store.one.documents[props.index].hengerurtartalom);
     const hirdetes_datum = ref(store.one.documents[props.index].hirdetes_datum);
-    // TODO: Get data out
     const kepek = ref(store.one.documents[props.index].kepek);
-    console.log(kepek);
-    const longText = ref(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
-    );
+    // console.log(kepek.value);
+    const slicedText = ref("");
     const toggled = ref(false);
     const handleToggle = (toggled) => {
       if (!toggled) {
-        let slicedText = "";
         let lastWhiteSpaceIdx = -1;
         for (let index = 0; index < 100; index++) {
-          slicedText += longText.value[index];
-          if (longText.value[index] == " ") {
+          slicedText.value += displayText.value[index];
+          if (displayText.value[index] == " ") {
             lastWhiteSpaceIdx = index;
           }
         }
-        if (slicedText[99] == " ") {
-          displayText.value = slicedText.slice(0, 98) + "...";
+        if (slicedText.value[99] == " ") {
+          slicedText.value = slicedText.value.slice(0, 98) + "...";
         } else {
-          displayText.value = slicedText.slice(0, lastWhiteSpaceIdx) + "...";
+          slicedText.value = slicedText.value.slice(0, lastWhiteSpaceIdx) + "...";
         }
       } else {
-        displayText.value = longText.value;
+        slicedText.value = displayText.value;
       }
     };
 
     return {
-      longText,
       toggled,
       displayText,
       szin,
       evjarat,
       hengerurtartalom,
       hirdetes_datum,
+      slicedText,
+      kepek,
       handleToggle,
     };
   },
   mounted() {
-    this.handleToggle();
+    this.handleToggle(false);
   },
 };
 </script>
@@ -78,12 +74,12 @@ export default {
       </ul>
     </q-card-section>
     <q-card-section class="" style="background-color: rgb(200, 190, 156)">
-      <div class="text-h7 text-justify">{{ displayText }}</div>
+      <div class="text-h7 text-justify">{{ toggled ? displayText : slicedText }}</div>
       <hr />
       <q-toggle
         v-model="toggled"
         color="dark-blue"
-        :disable="longText.length <= 100"
+        :disable="displayText.length <= 100"
         label="Teljes hirdetés"
         @update:model-value="handleToggle"
       />
@@ -92,7 +88,7 @@ export default {
       <q-img role="img" src="../assets/logo.png" style="max-height: 200px"></q-img>
     </q-card-section>
     <q-card-section style="background-color: rgb(200, 190, 156)">
-      <div class="text-h7 text-justify">link</div>
+      <div v-for="item in kepek" :key="item" class="text-h7 text-justify">{{ item }}</div>
     </q-card-section>
     <q-card-actions class="justify-center" style="background-color: rgb(255, 228, 196)">
       <q-btn

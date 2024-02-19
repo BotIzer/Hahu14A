@@ -2,7 +2,6 @@
 import { useStore } from "src/stores/store";
 import { ref } from "vue";
 const store = useStore();
-
 export default {
   props: ["index"],
   setup(props) {
@@ -112,7 +111,7 @@ export default {
         label="Hirdetés szerkesztése"
         no-caps
         type="button"
-        @click="store.app.showNewDialog = true"
+        @click="$emit('editDialog')"
       ></q-btn>
     </q-card-actions>
   </q-card>

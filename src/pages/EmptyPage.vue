@@ -14,6 +14,10 @@ onMounted(() => {
 function selectionChanged() {
   console.log("SELECTION CHANGED!!!");
 }
+function editDocument() {
+  store.app.showEditDialog = true;
+}
+
 // console.log(store.one.documents[0]);
 </script>
 <template>
@@ -35,7 +39,7 @@ function selectionChanged() {
     </div>
     <div class="row justify-center q-ma-xl">
       <div v-for="(item, index) in store.one.documents" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <CardComponent :index="index"></CardComponent>
+        <CardComponent :index="index" @editDialog="editDocument()"></CardComponent>
       </div>
     </div>
   </q-page>

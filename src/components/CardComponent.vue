@@ -6,6 +6,7 @@ const store = useStore();
 export default {
   props: ["index"],
   setup(props) {
+    const cim = ref(store.one.documents[props.index].cim);
     const displayText = ref(store.one.documents[props.index].leiras);
     const szin = ref(store.one.documents[props.index].szin);
     const evjarat = ref(store.one.documents[props.index].evjarat);
@@ -37,6 +38,7 @@ export default {
     return {
       toggled,
       displayText,
+      cim,
       szin,
       evjarat,
       hengerurtartalom,
@@ -55,7 +57,7 @@ export default {
 <template>
   <q-card bordered class="q-ma-md" flat>
     <q-card-section class="text-center text-h5" style="background-color: rgb(200, 190, 156)">
-      Our Changing Planet
+      {{ cim }}
     </q-card-section>
     <q-card-section class="text-h7" style="background-color: rgb(255, 228, 196)">
       <ul>

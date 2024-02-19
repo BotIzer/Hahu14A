@@ -9,7 +9,11 @@ const selectedCategoryName = ref(store.many.documents[0]);
 onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
+  selectionChanged();
 });
+function selectionChanged() {
+  console.log("SELECTION CHANGED!!!");
+}
 // console.log(store.one.documents[0]);
 </script>
 <template>
@@ -26,6 +30,7 @@ onMounted(() => {
         option-value="id"
         :options="store.many.documents"
         :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
+        @update:model-value="selectionChanged()"
       ></q-select>
     </div>
     <div class="row justify-center q-ma-xl">

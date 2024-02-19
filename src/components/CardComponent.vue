@@ -1,10 +1,14 @@
 <script>
+import { useStore } from "src/stores/store";
 import { ref } from "vue";
+const store = useStore();
 let displayText = ref(
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
 );
 export default {
-  setup() {
+  props: ["index"],
+  setup(props) {
+    const szin = ref(store.one.documents[props.index].szin);
     const longText = ref(
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
     );
@@ -33,6 +37,7 @@ export default {
       longText,
       toggled,
       displayText,
+      szin,
       handleToggle,
     };
   },
@@ -49,8 +54,10 @@ export default {
     </q-card-section>
     <q-card-section class="text-h7" style="background-color: rgb(255, 228, 196)">
       <ul>
-        <li><span>Szin: </span><b>template</b></li>
-        <li><span>Évjárat: </span><b>template</b></li>
+        <li>
+          <span>Szin: </span><b>{{ szin }}</b>
+        </li>
+        <li><span>Évjárat: </span><b>evjarat</b></li>
         <li><span>Hengerűrtartalom: </span><b>template</b></li>
         <li><span>Hirdetés dátuma: </span><b>template</b></li>
       </ul>

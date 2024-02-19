@@ -10,7 +10,7 @@ onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
 });
-console.log(store.one.documents[0]);
+// console.log(store.one.documents[0]);
 </script>
 <template>
   <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p>
@@ -29,8 +29,8 @@ console.log(store.one.documents[0]);
       ></q-select>
     </div>
     <div class="row justify-center q-ma-xl">
-      <div v-for="(item, index) in store.many.documents" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <CardComponent></CardComponent>
+      <div v-for="(item, index) in store.one.documents" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <CardComponent :index="index"></CardComponent>
       </div>
     </div>
   </q-page>

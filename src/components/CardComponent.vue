@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-  <q-card bordered flat>
+  <q-card bordered class="q-ma-md" flat>
     <q-card-section class="text-center text-h5" style="background-color: rgb(200, 190, 156)">
       Our Changing Planet
     </q-card-section>

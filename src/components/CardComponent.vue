@@ -9,6 +9,12 @@ export default {
   props: ["index"],
   setup(props) {
     const szin = ref(store.one.documents[props.index].szin);
+    const evjarat = ref(store.one.documents[props.index].evjarat);
+    const hengerurtartalom = ref(store.one.documents[props.index].hengerurtartalom);
+    const hirdetes_datum = ref(store.one.documents[props.index].hirdetes_datum);
+    // TODO: Get data out
+    const kepek = ref(store.one.documents[props.index].kepek);
+    console.log(kepek);
     const longText = ref(
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labores et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicin elit. Animi assumenda amet temporibus ab! Velit quibusdam voluptate maxime commodi quis minima dolorum consectetur perferendis fuga atque cumque voluptatibus a, obcaecati odit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam consectetur repellendus quam odio impedit ad placeat distinctio consequuntur doloribus adipisci. Dolorem harum asperiores sed delectu recusandae nesciunt sunt nemo debitis.",
     );
@@ -38,6 +44,9 @@ export default {
       toggled,
       displayText,
       szin,
+      evjarat,
+      hengerurtartalom,
+      hirdetes_datum,
       handleToggle,
     };
   },
@@ -57,9 +66,15 @@ export default {
         <li>
           <span>Szin: </span><b>{{ szin }}</b>
         </li>
-        <li><span>Évjárat: </span><b>evjarat</b></li>
-        <li><span>Hengerűrtartalom: </span><b>template</b></li>
-        <li><span>Hirdetés dátuma: </span><b>template</b></li>
+        <li>
+          <span>Évjárat: </span><b>{{ evjarat }}</b>
+        </li>
+        <li>
+          <span>Hengerűrtartalom: </span><b>{{ hengerurtartalom }} cm<sup>2</sup></b>
+        </li>
+        <li>
+          <span>Hirdetés dátuma: </span><b>{{ hirdetes_datum }}</b>
+        </li>
       </ul>
     </q-card-section>
     <q-card-section class="" style="background-color: rgb(200, 190, 156)">

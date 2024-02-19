@@ -3,12 +3,14 @@ import CardComponent from "src/components/CardComponent.vue";
 import { useStore } from "src/stores/store";
 import { ref } from "vue";
 import { onMounted } from "vue";
+import NewEditDialog from "src/components/NewEditDialog.vue";
 const store = useStore();
 const selectedCategoryName = ref(store.many.documents[0]);
 onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
 });
+console.log(store.one.documents[0]);
 </script>
 <template>
   <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p>
@@ -20,7 +22,7 @@ onMounted(() => {
         emit-value
         label="Kategória"
         map-options
-        option-label="categoryNameField"
+        option-label="nev"
         option-value="id"
         :options="store.many.documents"
         :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
@@ -32,6 +34,6 @@ onMounted(() => {
       </div>
     </div>
   </q-page>
+  <NewEditDialog />
 </template>
-
 <style lang="scss" scoped></style>

@@ -6,6 +6,7 @@ const store = useStore();
 export default {
   props: ["index"],
   setup(props) {
+    const _id = ref(store.one.documents[props.index]._id);
     const cim = ref(store.one.documents[props.index].cim);
     const displayText = ref(store.one.documents[props.index].leiras);
     const szin = ref(store.one.documents[props.index].szin);
@@ -38,6 +39,7 @@ export default {
     return {
       toggled,
       displayText,
+      _id,
       cim,
       szin,
       evjarat,
@@ -87,7 +89,9 @@ export default {
       />
     </q-card-section>
     <q-card-section style="background-color: rgb(255, 228, 196)">
-      <q-img role="img" src="../assets/logo.png" style="max-height: 200px"></q-img>
+      <q-carousel v-model="_id" thumbnails>
+        <q-carousel-slide v-for="(item, index) in kepek" :key="index" :img-src="kepek[index]" :name="index" />
+      </q-carousel>
     </q-card-section>
     <q-card-section style="background-color: rgb(200, 190, 156)">
       <div v-for="item in kepek" :key="item" class="text-h7 text-justify">{{ item }}</div>

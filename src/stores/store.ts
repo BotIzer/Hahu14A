@@ -98,7 +98,7 @@ export const useStore = defineStore({
       Loading.show();
       this.one.documents = [];
       api
-        .get("api/advertisements")
+        .get("api/hirdetesek")
         .then((res) => {
           Loading.hide();
           if (res?.data) {
@@ -114,7 +114,7 @@ export const useStore = defineStore({
       Loading.show();
       this.many.documents = [];
       api
-        .get("api/categories")
+        .get("api/kategoriak")
         .then((res) => {
           Loading.hide();
           if (res?.data) {

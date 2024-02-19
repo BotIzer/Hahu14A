@@ -71,7 +71,7 @@ function filterUpdate() {
       dense
       filled
       label="Filter"
-      style="width: 400px; margin: auto;"
+      style="width: 400px; margin: auto"
       type="text"
       @update:model-value="filterUpdate()"
     />

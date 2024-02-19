@@ -8,7 +8,7 @@
       "type": "msedge",
       "request": "launch",
       "name": "Quasar App: Edge",
-      "url": "http://localhost:9000",
+      "url": "http://localhost:8080",
       // To properly reflect changes after HMR with Vite
       "enableContentValidation": false,
       "webRoot": "${workspaceFolder}/src",
@@ -16,15 +16,13 @@
       "sourceMapPathOverrides": {
         "webpack://package-name/./src/*": "${webRoot}/*"
       },
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*"
-      ]
+      "skipFiles": ["${workspaceFolder}/node_modules/**/*"]
     },
     {
       "type": "chrome",
       "request": "launch",
       "name": "Quasar App: Chrome",
-      "url": "http://localhost:9000",
+      "url": "http://localhost:8080",
       // To properly reflect changes after HMR with Vite
       "enableContentValidation": false,
       "webRoot": "${workspaceFolder}/src",
@@ -32,9 +30,7 @@
       "sourceMapPathOverrides": {
         "webpack://package-name/./src/*": "${webRoot}/*"
       },
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*"
-      ]
+      "skipFiles": ["${workspaceFolder}/node_modules/**/*"]
     }
   ]
 }

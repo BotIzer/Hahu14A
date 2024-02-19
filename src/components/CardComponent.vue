@@ -6,7 +6,7 @@ const store = useStore();
 export default {
   props: ["index"],
   setup(props) {
-    const _id = ref(store.one.documents[props.index]._id);
+    const id = ref(store.one.documents[props.index]._id);
     const cim = ref(store.one.documents[props.index].cim);
     const displayText = ref(store.one.documents[props.index].leiras);
     const szin = ref(store.one.documents[props.index].szin);
@@ -35,11 +35,13 @@ export default {
         slicedText.value = displayText.value;
       }
     };
-
+    const handleThumbnails = (idx) => {
+      console.log(idx);
+    };
     return {
       toggled,
       displayText,
-      _id,
+      id,
       cim,
       szin,
       evjarat,
@@ -48,6 +50,7 @@ export default {
       slicedText,
       kepek,
       handleToggle,
+      handleThumbnails,
     };
   },
   mounted() {
@@ -89,10 +92,17 @@ export default {
       />
     </q-card-section>
     <q-card-section style="background-color: rgb(255, 228, 196)">
-      <q-carousel v-model="_id" thumbnails>
-        <q-carousel-slide v-for="(item, index) in kepek" :key="index" :img-src="kepek[index]" :name="index" />
+      <q-carousel v-model="id" thumbnails>
+        <q-carousel-slide
+          v-for="(item, idx) in kepek"
+          :key="idx"
+          :img-src="kepek[idx]"
+          :name="idx"
+          @click="handleThumbnails(idx)"
+        />
       </q-carousel>
     </q-card-section>
+    <!-- TODO I hate bootstrap -->
     <q-card-section style="background-color: rgb(200, 190, 156)">
       <div v-for="item in kepek" :key="item" class="text-h7 text-justify">{{ item }}</div>
     </q-card-section>

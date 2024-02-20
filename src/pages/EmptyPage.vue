@@ -19,7 +19,8 @@ const selectionChanged = () => {
   console.log(selectedCategoryName.value);
   store.other_GetAll(selectedCategoryName.value);
 };
-function editDocument() {
+function editDocument(ad) {
+  store.many.document._id = ad._id;
   store.app.showEditDialog = true;
 }
 watch(
@@ -40,15 +41,14 @@ watch(
         label="Kategória"
         map-options
         option-label="nev"
-        option-value="nev"
-        :options="store.many.documents"
-        :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
+        option-value="id"
+        :options="store.one.documents"
         @update:model-value="selectionChanged()"
       ></q-select>
     </div>
     <div class="row justify-center q-ma-xl">
       <div v-for="(item, index) in list" :key="index" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <CardComponent :index="index" @editDialog="editDocument()"></CardComponent>
+        <CardComponent :index="index" @editDialog="editDocument(item)"></CardComponent>
       </div>
     </div>
   </q-page>

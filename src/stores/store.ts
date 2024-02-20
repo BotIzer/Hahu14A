@@ -26,15 +26,22 @@ export interface IOne {
 }
 
 export interface IMany {
-  id?: number; // PK
-  categoryId?: number; // FK
-  titleField?: string;
-  descField?: string;
-  dateField?: string;
-  boolField?: boolean;
-  priceField?: number;
-  imgField?: string;
-  category?: IOne;
+  _id?: number; // PK
+  kategoria_id?: number; // FK
+  cim?: string;
+  evjarat?: number;
+  km_allas?: number;
+  szim?: string;
+  uzemanyag?: string;
+  hengerurtartalom?: number;
+  teljesitmeny?: number;
+  serulesmentes?: boolean;
+  leiras?: string;
+  hirdetes_datum?: Date;
+  vetelar?: number;
+  kepek?: Array<string>;
+  hirdetes_kategoria?: IOne;
+  teljesitmeny_kw?: number;
 }
 
 export interface IOther {
@@ -109,6 +116,21 @@ export const useStore = defineStore({
           ShowErrorWithNotify(error);
         });
     },
+
+    // async one_getByCategory(): Promise<void> {
+    //   Loading.show();
+    //   api
+    //   .get(`api/kategoriak/${this.app.selectedCategory}/hirdetesek`).then((res) => {
+    //     Loading.hide();
+    //     if (res?.data) {
+    //       this.many.documents = res.data.map((r: any) => r.kategoria_hirdetesei).flat();
+    //       this.many.documents = this.many.documents.map((r: any) => ({
+    //         ...r,
+    //         aktKep: 0,
+    //         expandedLeiras: false,
+    //       }));
+    //     }
+    // } },
     async other_GetAll(kategoriaNev): Promise<void> {
       Loading.show();
       this.other.documents = [];
@@ -158,10 +180,10 @@ export const useStore = defineStore({
     },
 
     async many_GetById(): Promise<void> {
-      if (this.many?.document?.id) {
+      if (this.many?.document?._id) {
         Loading.show();
         api
-          .get(`api/advertisements/${this.many.document.id}`)
+          .get(`api/hirdetesek/${this.many.document._id}`)
           .then((res) => {
             Loading.hide();
             if (res?.data) {

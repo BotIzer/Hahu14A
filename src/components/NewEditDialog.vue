@@ -46,40 +46,40 @@ function Reset() {
         <div class="q-gutter-md">
           <h5 class="text-center">Hirdetés szerkesztése</h5>
           <q-select
-            v-model="store.many.document.categoryId"
+            v-model="store.many.document.hirdetes_kategoria"
             clearable
             emit-value
             label="Kategória"
             map-options
-            option-label="categoryNameField"
+            option-label="nev"
             option-value="id"
             :options="store.one.documents"
             :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
           />
           <q-input
-            v-model="store.many.document.titleField"
+            v-model="store.many.document.cim"
             filled
             label="Cím"
             :rules="[(v) => (v != null && v != '') || 'A hirdetés címe nem lehet üres!']"
             type="text"
           />
           <q-input
-            v-model="store.many.document.descField"
+            v-model="store.many.document.leiras"
             filled
             label="Leírás"
             :rules="[(v) => (v != null && v != '') || 'Kérem töltse ki a leírást!']"
             type="textarea"
           />
-          <q-input v-model="store.many.document.dateField" filled label="Hirdetés dátuma" type="date" />
-          <q-checkbox v-model="store.many.document.boolField" filled label="Sérülésmentes"></q-checkbox>
+          <q-input v-model="store.many.document.hirdetes_datum" filled label="Hirdetés dátuma" type="date" />
+          <q-checkbox v-model="store.many.document.serulesmentes" filled label="Sérülésmentes"></q-checkbox>
           <q-input
-            v-model="store.many.document.priceField"
+            v-model="store.many.document.vetelar"
             filled
             label="Meghírdetett ár"
             :rules="[(v) => (v != null && v != '') || 'A hirdetés ára nem lehet üres!']"
             type="number"
           />
-          <q-input v-model="store.many.document.imgField" filled label="Fotó az eladó járműről" type="text" />
+          <q-input v-model="store.many.document.kepek" filled label="Fotó az eladó járműről" type="text" />
           <div></div>
           <div class="row justify-center q-gutter-lg">
             <q-btn color="green" label="Save" no-caps type="submit" />

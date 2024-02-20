@@ -5,14 +5,14 @@ const store = useStore();
 export default {
   props: ["index"],
   setup(props) {
-    const id = ref(store.one.documents[props.index]._id);
-    const cim = ref(store.one.documents[props.index].cim);
-    const displayText = ref(store.one.documents[props.index].leiras);
-    const szin = ref(store.one.documents[props.index].szin);
-    const evjarat = ref(store.one.documents[props.index].evjarat);
-    const hengerurtartalom = ref(store.one.documents[props.index].hengerurtartalom);
-    const hirdetes_datum = ref(store.one.documents[props.index].hirdetes_datum);
-    const kepek = ref(store.one.documents[props.index].kepek);
+    const id = ref(store.other.documents[props.index]._id);
+    const cim = ref(store.other.documents[props.index].cim);
+    const displayText = ref(store.other.documents[props.index].leiras);
+    const szin = ref(store.other.documents[props.index].szin);
+    const evjarat = ref(store.other.documents[props.index].evjarat);
+    const hengerurtartalom = ref(store.other.documents[props.index].hengerurtartalom);
+    const hirdetes_datum = ref(store.other.documents[props.index].hirdetes_datum);
+    const kepek = ref(store.other.documents[props.index].kepek);
     // console.log(kepek.value);
     const slicedText = ref("");
     const toggled = ref(false);

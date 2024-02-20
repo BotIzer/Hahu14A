@@ -42,7 +42,7 @@ watch(
         map-options
         option-label="nev"
         option-value="id"
-        :options="store.one.documents"
+        :options="store.many.documents"
         @update:model-value="selectionChanged()"
       ></q-select>
     </div>

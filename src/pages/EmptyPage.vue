@@ -16,7 +16,6 @@ onMounted(() => {
   selectionChanged();
 });
 const selectionChanged = () => {
-  console.log(selectedCategoryName.value);
   store.other_GetAll(selectedCategoryName.value);
 };
 function editDocument(ad) {
@@ -36,12 +35,11 @@ watch(
     <div class="row justify-center">
       <q-select
         v-model="selectedCategoryName"
-        clearable
         emit-value
         label="Kategória"
         map-options
         option-label="nev"
-        option-value="id"
+        option-value="nev"
         :options="store.many.documents"
         @update:model-value="selectionChanged()"
       ></q-select>

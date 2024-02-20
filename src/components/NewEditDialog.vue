@@ -53,7 +53,7 @@ function Reset() {
             map-options
             option-label="nev"
             option-value="id"
-            :options="store.one.documents"
+            :options="store.many.documents"
             :rules="[(v) => v != null || 'Kérem válasszon kategóriát!']"
           />
           <q-input

@@ -217,7 +217,7 @@ export const useStore = defineStore({
     },
 
     async many_EditById(): Promise<void> {
-      if (this.many?.document?.id) {
+      if (this.many?.document?._id) {
         const diff: any = {};
         // the diff object only stores changed fields:
         Object.keys(this.many.document).forEach((k, i) => {
@@ -233,7 +233,7 @@ export const useStore = defineStore({
         } else {
           Loading.show();
           api
-            .patch(`api/advertisements/${this.many.document.id}`, diff)
+            .patch(`api/hirdetesek/${this.many.document._id}`, diff)
             .then((res) => {
               Loading.hide();
               if (res?.data?.id) {

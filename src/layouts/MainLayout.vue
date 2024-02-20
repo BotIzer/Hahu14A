@@ -6,7 +6,7 @@
     <q-header class="bg-blue-5 text-white" elevated>
       <q-toolbar>
         <q-toolbar-title shrink style="cursor: pointer" title> Dolgozat minta </q-toolbar-title>
-        <q-btn class="active" flat label="Home" no-caps to="/empty"> </q-btn>
+        <q-btn class="active" flat label="Home" no-caps to="/"> </q-btn>
       </q-toolbar>
     </q-header>
 

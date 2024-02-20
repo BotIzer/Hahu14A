@@ -28,6 +28,7 @@ function Submit() {
     .onOk(() => {
       store.many_EditById();
       // router.push("/xcard");
+      Close();
     })
     .onCancel(() => {
       // router.push("/xcard");

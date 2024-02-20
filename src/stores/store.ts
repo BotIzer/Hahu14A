@@ -109,6 +109,21 @@ export const useStore = defineStore({
           ShowErrorWithNotify(error);
         });
     },
+    async other_GetAll(kategoriaNev): Promise<void> {
+      Loading.show();
+      this.other.documents = [];
+      api
+        .get(`api/kategoriak/${kategoriaNev}/hirdetesek`)
+        .then((res) => {
+          Loading.hide();
+          if (res?.data) {
+            this.other.documents = res.data[0].kategoria_hirdetesei;
+          }
+        })
+        .catch((error) => {
+          ShowErrorWithNotify(error);
+        });
+    },
     // TODO fix this
     async getAllCategories() {
       Loading.show();

@@ -1,31 +1,33 @@
 <script setup lang="ts">
 import CardComponent from "src/components/CardComponent.vue";
 import { useStore } from "src/stores/store";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { onMounted } from "vue";
 import NewEditDialog from "src/components/NewEditDialog.vue";
 
 const store = useStore();
-const selectedCategoryName = ref(store.many.documents[0]);
-const list = ref(store.other.documents);
+const selectedCategoryName = ref("Személyautó");
+const list = ref([]);
 onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
   // store.other_GetAll(selectedCategoryName.value.nev);
-  store.other_GetAll(selectedCategoryName.value.nev);
+  store.other_GetAll(selectedCategoryName.value);
   selectionChanged();
 });
-function selectionChanged() {
-  if (selectedCategoryName.value === null) {
-    return;
-  }
-  console.log(selectedCategoryName.value.nev);
-  console.log("ÁÁÁ");
-  store.other_GetAll(selectedCategoryName.value.nev);
-}
+const selectionChanged = () => {
+  console.log(selectedCategoryName.value);
+  store.other_GetAll(selectedCategoryName.value);
+};
 function editDocument() {
   store.app.showEditDialog = true;
 }
+watch(
+  () => store.other.documents,
+  (newDocuments) => {
+    list.value = newDocuments;
+  },
+);
 </script>
 <template>
   <!-- <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p> -->

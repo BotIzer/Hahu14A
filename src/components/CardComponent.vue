@@ -34,10 +34,9 @@ export default {
         slicedText.value = displayText.value;
       }
     };
-    const handleThumbnails = (idx) => {
-      console.log(idx);
-    };
+
     return {
+      slide: ref(1),
       toggled,
       displayText,
       id,
@@ -49,7 +48,6 @@ export default {
       slicedText,
       kepek,
       handleToggle,
-      handleThumbnails,
     };
   },
   mounted() {
@@ -83,27 +81,37 @@ export default {
       <div class="text-h7 text-justify">{{ toggled ? displayText : slicedText }}</div>
       <hr />
       <q-toggle
-        v-model="toggled"
+        v-model="id"
         color="dark-blue"
         :disable="displayText.length <= 100"
         label="Teljes hirdetés"
         @update:model-value="handleToggle"
       />
     </q-card-section>
-    <q-card-section style="background-color: rgb(255, 228, 196)">
-      <q-carousel v-model="id" thumbnails>
-        <q-carousel-slide
-          v-for="(item, idx) in kepek"
-          :key="idx"
-          :img-src="kepek[idx]"
-          :name="idx"
-          @click="handleThumbnails(idx)"
-        />
+    <q-card-section v-if="kepek.length == 1" style="background-color: rgb(255, 228, 196)">
+      <div class="q-img q-img--menu" role="img" style="max-height: 200px">
+        <div style="padding-bottom: 75%"></div>
+        <div class="q-img__container absolute-full">
+          <img
+            aria-hidden="true"
+            class="q-img__image q-img__image--with-transition q-img__image--loaded"
+            draggable="false"
+            fetchpriotity="auto"
+            loading="lazy"
+            :src="kepek[0]"
+            style="object-fit: scale-down; object-position: 50% 50%"
+          />
+        </div>
+      </div>
+    </q-card-section>
+    <q-card-section v-if="kepek.length != 1" style="background-color: rgb(255, 228, 196)">
+      <q-carousel v-model="slide" style="height: 200px" thumbnails>
+        <q-carousel-slide v-for="(item, idx) in kepek" :key="idx" :img-src="kepek[idx]" :name="idx + 1" />
       </q-carousel>
     </q-card-section>
     <!-- TODO I hate bootstrap -->
     <q-card-section style="background-color: rgb(200, 190, 156)">
-      <div v-for="item in kepek" :key="item" class="text-h7 text-justify">{{ item }}</div>
+      <div v-for="(item, id) in kepek" :key="id" class="text-h7 text-justify">{{ slide - 1 }} - {{ item }}</div>
     </q-card-section>
     <q-card-actions class="justify-center" style="background-color: rgb(255, 228, 196)">
       <q-btn

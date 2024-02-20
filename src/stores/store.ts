@@ -187,6 +187,8 @@ export const useStore = defineStore({
           .then((res) => {
             Loading.hide();
             if (res?.data) {
+              res.data.hirdetes_datum = res.data.hirdetes_datum.slice(0, 10);
+              console.log(res.data.hirdetes_datum);
               this.many.document = res.data;
               // store startig data to PATCH method:
               Object.assign(this.many.documentOld, this.many.document);

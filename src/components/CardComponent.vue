@@ -17,6 +17,10 @@ export default {
     const slicedText = ref("");
     const toggled = ref(false);
     const handleToggle = (toggled) => {
+      if (displayText.value.length <= 100) {
+        slicedText.value = displayText.value;
+        return;
+      }
       if (!toggled) {
         let lastWhiteSpaceIdx = -1;
         for (let index = 0; index < 100; index++) {
@@ -81,7 +85,7 @@ export default {
       <div class="text-h7 text-justify">{{ toggled ? displayText : slicedText }}</div>
       <hr />
       <q-toggle
-        v-model="id"
+        v-model="toggled"
         color="dark-blue"
         :disable="displayText.length <= 100"
         label="Teljes hirdetés"

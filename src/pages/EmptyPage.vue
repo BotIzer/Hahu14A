@@ -11,6 +11,7 @@ const list = ref(store.other.documents);
 onMounted(() => {
   store.getAllCategories();
   store.one_GetAll();
+  // store.other_GetAll(selectedCategoryName.value.nev);
   store.other_GetAll(selectedCategoryName.value.nev);
   selectionChanged();
 });
@@ -18,14 +19,13 @@ function selectionChanged() {
   if (selectedCategoryName.value === null) {
     return;
   }
-  // store.other_GetAll(selectedCategoryName.value.nev);
   console.log(selectedCategoryName.value.nev);
+  console.log("ÁÁÁ");
+  store.other_GetAll(selectedCategoryName.value.nev);
 }
 function editDocument() {
   store.app.showEditDialog = true;
 }
-
-// console.log(store.one.documents[0]);
 </script>
 <template>
   <!-- <p v-for="(item, index) in store.one.documents" :key="index">{{ item }}</p> -->

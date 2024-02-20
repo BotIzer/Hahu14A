@@ -167,7 +167,7 @@ export const useStore = defineStore({
       Loading.show();
       this.many.documents = [];
       api
-        .get("api/advertisements")
+        .get("api/hirdetesek")
         .then((res) => {
           Loading.hide();
           if (res?.data) {
@@ -203,7 +203,7 @@ export const useStore = defineStore({
         this.many.documents = [];
         // Loading.show();
         api
-          .get(`advertisements?_expand=category&q=${this.app.filter}`)
+          .get(`hirdetesek?_expand=category&q=${this.app.filter}`)
           .then((res) => {
             // Loading.hide();
             if (res?.data) {
@@ -236,10 +236,10 @@ export const useStore = defineStore({
             .patch(`api/hirdetesek/${this.many.document._id}`, diff)
             .then((res) => {
               Loading.hide();
-              if (res?.data?.id) {
+              if (res?.data?._id) {
                 this.many_GetAll(); // refresh dataN with read all data again from backend
                 Notify.create({
-                  message: `Document with id=${res.data.id} has been edited successfully!`,
+                  message: `Document with id=${res.data._id} has been edited successfully!`,
                   color: "positive",
                 });
               }
@@ -252,15 +252,15 @@ export const useStore = defineStore({
     },
 
     async many_DeleteById(): Promise<void> {
-      if (this.many?.document?.id) {
+      if (this.many?.document?._id) {
         Loading.show();
         api
-          .delete(`api/advertisements/${this.many.document.id}`)
+          .delete(`api/hirdetesek/${this.many.document._id}`)
           .then(() => {
             Loading.hide();
             this.many_GetAll(); // refresh dataN with read all data again from backend
             Notify.create({
-              message: `Document with id=${this.many.document.id} has been deleted successfully!`,
+              message: `Document with id=${this.many.document._id} has been deleted successfully!`,
               color: "positive",
             });
           })
@@ -274,7 +274,7 @@ export const useStore = defineStore({
       if (this.many?.document) {
         Loading.show();
         api
-          .post("api/advertisements", this.many.document)
+          .post("api/hirdetesek", this.many.document)
           .then((res) => {
             Loading.hide();
             if (res?.data) {
